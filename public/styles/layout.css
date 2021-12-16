@@ -15,10 +15,21 @@ html {
  */
 
 body {
-  color: #545149;
-  background-color: #f4f1ec;
+  background-color: #fff2e6;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 24px;
 }
+
+.container {
+  text-align: center;
+  margin-top: 450px;
+  color: black;
+  width: 90%;
+  }
+  .parent-container {
+    display: flex;
+    justify-content: center;
+  }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions

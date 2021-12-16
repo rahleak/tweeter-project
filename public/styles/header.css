@@ -1,0 +1,37 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.pd {
+  margin-top: 120px;
+  height: 400px;
+  position: absolute;
+  z-index: -1;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #364080;
+  background-image: url("https://www.transparenttextures.com/patterns/dust.png");
+  font-family: "Source Sans Pro";
+  font-size: 40px;
+  justify-content: center;
+}
+
+.userFirstName {
+  font-weight: bold;
+  font-family: "Source Sans Pro";
+}
+
+.userFullName {
+  position: relative;
+  color: #FFFFFF
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; */
+}

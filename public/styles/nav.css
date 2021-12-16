@@ -1,0 +1,43 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+nav {
+  position:fixed;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  color: #FFFFFF;
+  background-color: #4056A1;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  z-index: 0;
+}
+nav > span {
+  font-size: 35px;
+  font-family: "Bungee", cursive;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.write {
+  font-weight: bold;
+}
+
+.mt {
+  margin-top: -25px;
+  color: red;
+}
+
