@@ -15,7 +15,7 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #94793f;
+  background-color: #fff3b0;
   background-image: url("https://www.transparenttextures.com/patterns/dust.png");
   font-family: "Source Sans Pro";
   font-size: 40px;
@@ -29,5 +29,6 @@ html {
 
 .userFullName {
   position: relative;
-  color: #FFFFFF
+  color: #FFFFFF;
+  text-shadow: 5px 5px 8px black;
 }
