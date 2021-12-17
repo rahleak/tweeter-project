@@ -6,35 +6,10 @@
 
 $(document).ready(function () {
 
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
-
 
   const createTweetElement = function (tweetObj) {
 
-    let $tweet = $(`<div class="hvr">
+    let $tweet = `<div class="hvr">
           <header>
           <span>
           <img src="${tweetObj["user"]["avatars"]}" alt="avatar pic">
@@ -53,22 +28,71 @@ $(document).ready(function () {
             <i class="fas fa-heart hrt"></i>
           </span>
         </footer>
-        </div>`)
+        </div>`
 
     return $tweet;
 
   };
 
   const renderTweets = function(tweets) {
-    
+    let tweetArr = [];
     for (const tweet of tweets) {        // loops through tweets
-       createTweetElement(tweet);   // calls createTweetElement for each tweet
-      $('.container').append(createTweetElement(tweet))
-      // takes return value and appends it to the tweets container
-    } // ADD HOVER FUNCTION SO THAT EVERYTIME TWEET IS APPENDED, FUNCTION IS CALLED
-
+       tweetArr.push(createTweetElement(tweet));   // calls createTweetElement for each tweet
+    } 
+    tweetArr = tweetArr.reverse().join('')
+    $('.render').empty().append(tweetArr)
   }
-  renderTweets(data);
 
-  // $('.hvr').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+  const loadTweets = function() {
+    
+    $.getJSON('http://localhost:8080/tweets', function(data) {
+      renderTweets(data)
+      });
+    }
+
+  loadTweets();
+
+  $("#submitform").validate({
+    rules: {
+      text: {
+        required: true,
+        minlength: 1,
+        maxlength: 140
+      }
+    },
+    messages: {
+      tweet: {
+        required: "Please provide a tweet",
+        minlength: "Your tweet must be at least 1 characters long",
+        maxlength: "Your tweet must be under 140 characters!"
+      },
+    },
+    errorPlacement: function (error, element) {
+      if (element.is(":radio")) {
+        error.appendTo(element.parents('#submitform'));
+      }
+      else { // This is the default behavior
+        error.insertAfter(element);
+      }
+    },
+    submitHandler: function (form) {
+      $.ajax({
+        url: "/tweets",
+        type: "POST",
+        data: $(form).serialize(),
+        success: function (result) {
+          $( '#submitform' ).each(function(){
+            this.reset();
+        });
+          loadTweets();
+          console.log("The post was done successfully");
+        },
+        error: function (err) {
+          console.log("There was an error posting to the Database", err);
+        }
+      });
+      return false;
+    }
+  });
+
 });
