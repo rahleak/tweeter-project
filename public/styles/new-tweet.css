@@ -16,6 +16,7 @@ textarea {
   display: flex;
   flex-direction: column;
   border: none;
+  z-index: 0;
 }
 
 .straighten {

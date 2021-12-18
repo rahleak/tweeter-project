@@ -19,13 +19,13 @@ nav {
   align-items: center;
   padding-left: 1.5em;
   padding-right: 1.5em;
-  z-index: 0;
+  z-index: 1;
 }
+
 nav > span {
   font-size: 35px;
   font-family: "Bungee", cursive;
 }
-
 
 .write {
   font-weight: bold;
@@ -41,6 +41,21 @@ nav > span {
 .mt {
   padding-bottom: 50px;
   margin-left: 90px;
-  color: red;
+  color: white;
+  animation: float 3s ease infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(-10%);
+  }
+
+  50% {
+    transform: translateY(30%);
+  }
+
+  100% {
+    transform: translateY(-10%);
+  }
 }
 
