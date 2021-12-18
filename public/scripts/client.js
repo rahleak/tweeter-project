@@ -10,45 +10,45 @@ $(document).ready(function () {
   const createTweetElement = function (tweetObj) {
 
     let $tweet = `<div class="hvr">
-          <header>
-          <span>
-          <img src="${tweetObj["user"]["avatars"]}" alt="avatar pic">
-          ${tweetObj["user"]["name"]}
-          </span> 
-          ${tweetObj["user"]["handle"]}
-        </header>
-        <span class="pasttweets">
-        ${tweetObj["content"]["text"]}
-        </span>
-        <footer>
-        ${timeago.format(tweetObj["created_at"])}
-          <span class="icon">
-            <i class="fas fa-flag fl"></i>
-            <i class="fas fa-retweet rt"></i>
-            <i class="fas fa-heart hrt"></i>
-          </span>
-        </footer>
-        </div>`
+                    <header>
+                      <span>
+                        <img src="${tweetObj["user"]["avatars"]}" alt="avatar pic">
+                        ${tweetObj["user"]["name"]}
+                      </span> 
+                        ${tweetObj["user"]["handle"]}
+                    </header>
+                    <span class="pasttweets">
+                      ${tweetObj["content"]["text"]}
+                    </span>
+                    <footer>
+                      ${timeago.format(tweetObj["created_at"])}
+                      <span class="icon">
+                        <i class="fas fa-flag fl"></i>
+                        <i class="fas fa-retweet rt"></i>
+                        <i class="fas fa-heart hrt"></i>
+                      </span>
+                    </footer>
+                  </div>`
 
     return $tweet;
 
   };
 
-  const renderTweets = function(tweets) {
+  const renderTweets = function (tweets) {
     let tweetArr = [];
-    for (const tweet of tweets) {        // loops through tweets
-       tweetArr.push(createTweetElement(tweet));   // calls createTweetElement for each tweet
-    } 
+    for (const tweet of tweets) {   
+      tweetArr.push(createTweetElement(tweet));   
+    }
     tweetArr = tweetArr.reverse().join('')
     $('.render').empty().append(tweetArr)
   }
 
-  const loadTweets = function() {
-    
-    $.getJSON('http://localhost:8080/tweets', function(data) {
+  const loadTweets = function () {
+
+    $.getJSON('http://localhost:8080/tweets', function (data) {
       renderTweets(data)
-      });
-    }
+    });
+  }
 
   loadTweets();
 
@@ -81,9 +81,9 @@ $(document).ready(function () {
         type: "POST",
         data: $(form).serialize(),
         success: function (result) {
-          $( '#submitform' ).each(function(){
+          $('#submitform').each(function () {
             this.reset();
-        });
+          });
           loadTweets();
           console.log("The post was done successfully");
         },
