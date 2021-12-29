@@ -6,6 +6,14 @@
 
 $(document).ready(function () {
 
+  const renderTweets = function (tweets) {
+    let tweetArr = [];
+    for (const tweet of tweets) {   
+      tweetArr.push(createTweetElement(tweet));   
+    }
+    tweetArr = tweetArr.reverse().join('')
+    $('.render').empty().append(tweetArr)
+  }
 
   const createTweetElement = function (tweetObj) {
 
@@ -33,15 +41,6 @@ $(document).ready(function () {
     return $tweet;
 
   };
-
-  const renderTweets = function (tweets) {
-    let tweetArr = [];
-    for (const tweet of tweets) {   
-      tweetArr.push(createTweetElement(tweet));   
-    }
-    tweetArr = tweetArr.reverse().join('')
-    $('.render').empty().append(tweetArr)
-  }
 
   const loadTweets = function () {
 
@@ -83,6 +82,7 @@ $(document).ready(function () {
         success: function (result) {
           $('#submitform').each(function () {
             this.reset();
+            $('.counter').text(140);
           });
           loadTweets();
           console.log("The post was done successfully");
